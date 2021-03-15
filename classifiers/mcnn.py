@@ -136,7 +136,7 @@ class Classifier_MCNN:
     def train(self, x_train, y_train, x_test, y_test,y_true, pool_factor=None, filter_size=None,do_train=True):
         window_size = 0.2
         n_train_batch = 10
-        n_epochs = 200
+        n_epochs = 20
         max_train_batch_size = 256
 
         # print('Original train shape: ', x_train.shape)
