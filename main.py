@@ -79,7 +79,7 @@ def create_classifier(classifier_name, input_shape, nb_classes, output_directory
 
 ############################################### main
 
-def init_train(root_dir = './'):
+def init_train(root_dir = './', results_dir = './'):
     # this is the code used to launch an experiment on a dataset
     archive_name = 'UCRArchive_2018'
     dataset_name = 'MITECG'
@@ -88,7 +88,7 @@ def init_train(root_dir = './'):
 
     for classifier_name in classifier_names:
         print(f'Empezando entrenamiento utilizando el algoritmo {classifier_name}')
-        output_directory = root_dir + '/results/' + classifier_name + '/' + archive_name + itr + '/' + \
+        output_directory = results_dir + '/' + classifier_name + '/' + archive_name + itr + '/' + \
                            dataset_name + '/'
         test_dir_df_metrics = output_directory + 'df_metrics.csv'
         print('Method: ', archive_name, dataset_name, classifier_name, itr)
