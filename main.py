@@ -16,7 +16,7 @@ from utils.constants import ITERATIONS
 from utils.utils import read_all_datasets
 
 
-def fit_classifier():
+def fit_classifier(datasets_dict, dataset_name, classifier_name, output_directory):
     x_train = datasets_dict[dataset_name][0]
     y_train = datasets_dict[dataset_name][1]
     x_test = datasets_dict[dataset_name][2]
@@ -79,29 +79,25 @@ def create_classifier(classifier_name, input_shape, nb_classes, output_directory
 
 ############################################### main
 
-# change this directory for your machine
-root_dir = './'
+def init_train(root_dir = './'):
+    # this is the code used to launch an experiment on a dataset
+    archive_name = 'UCRArchive_2018'
+    dataset_name = 'MITECG'
+    classifier_names = ['fcn', 'resnet', 'mlp', 'tlenet']
+    itr = '_itr_1'
 
-
-
-# this is the code used to launch an experiment on a dataset
-archive_name = 'UCRArchive_2018'
-dataset_name = 'MITECG'
-classifier_names = ['fcn', 'resnet', 'mlp', 'tlenet']
-itr = '_itr_1'
-
-for classifier_name in classifier_names:
-    print(f'Empezando entrenamiento utilizando el algoritmo {classifier_name}')
-    output_directory = root_dir + '/results/' + classifier_name + '/' + archive_name + itr + '/' + \
-                       dataset_name + '/'
-    test_dir_df_metrics = output_directory + 'df_metrics.csv'
-    print('Method: ', archive_name, dataset_name, classifier_name, itr)
-    if os.path.exists(test_dir_df_metrics):
-        print('Already done')
-    else:
-        create_directory(output_directory)
-        datasets_dict = read_dataset(root_dir, archive_name, dataset_name)
-        fit_classifier()
-        print('LISTO')
-        # the creation of this directory means
-        create_directory(output_directory + '/DONE')
+    for classifier_name in classifier_names:
+        print(f'Empezando entrenamiento utilizando el algoritmo {classifier_name}')
+        output_directory = root_dir + '/results/' + classifier_name + '/' + archive_name + itr + '/' + \
+                           dataset_name + '/'
+        test_dir_df_metrics = output_directory + 'df_metrics.csv'
+        print('Method: ', archive_name, dataset_name, classifier_name, itr)
+        if os.path.exists(test_dir_df_metrics):
+            print('Already done')
+        else:
+            create_directory(output_directory)
+            datasets_dict = read_dataset(root_dir, archive_name, dataset_name)
+            fit_classifier(datasets_dict, dataset_name, classifier_name, output_directory)
+            print('LISTO')
+            # the creation of this directory means
+            create_directory(output_directory + '/DONE')
