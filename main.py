@@ -83,7 +83,7 @@ def init_train(root_dir = './', results_dir = './'):
     # this is the code used to launch an experiment on a dataset
     archive_name = 'UCRArchive_2018'
     dataset_name = 'MITECG'
-    classifier_names = ['tlenet']
+    classifier_names = ['fcn','mlp','resnet','tlenet']
     itr = '_itr_1'
 
     for classifier_name in classifier_names:
