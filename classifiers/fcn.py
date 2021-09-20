@@ -4,7 +4,7 @@
 import tensorflow.keras as keras
 import tensorflow as tf
 import numpy as np
-import time 
+import time #Se importa la librería tensorflow asi como otras necesarias para el codigo
 
 from utils.utils import save_logs
 from utils.utils import calculate_metrics
@@ -22,7 +22,7 @@ class Classifier_FCN:
 		return
 
 	def build_model(self, input_shape, nb_classes):
-		input_layer = keras.layers.Input(input_shape)
+		input_layer = keras.layers.Input(input_shape) #Empleamos la biblioteca keras para trabajar sobre tensorflow, está implementada en las 3 capas convolucionales
 
 		conv1 = keras.layers.Conv1D(filters=128, kernel_size=8, padding='same')(input_layer)
 		conv1 = keras.layers.BatchNormalization()(conv1)
@@ -46,7 +46,7 @@ class Classifier_FCN:
 			metrics=['accuracy'])
 
 		reduce_lr = keras.callbacks.ReduceLROnPlateau(monitor='loss', factor=0.5, patience=50, 
-			min_lr=0.0001)
+			min_lr=0.0001) # Reduce la tasa de aprendizaje cuando una métrica ha dejado de mejorar.
 
 		file_path = self.output_directory+'best_model.hdf5'
 
@@ -63,7 +63,7 @@ class Classifier_FCN:
 			exit()
 		# x_val and y_val are only used to monitor the test loss and NOT for training  
 		batch_size = 16
-		nb_epochs = 20
+		nb_epochs = 20 #Establecemos el numero de epocas que deseemos que ejecute el modelo
 
 		mini_batch_size = int(min(x_train.shape[0]/10, batch_size))
 
