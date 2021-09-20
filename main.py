@@ -4,7 +4,7 @@ from utils.utils import read_dataset
 from utils.utils import transform_mts_to_ucr_format
 from utils.utils import visualize_filter
 from utils.utils import viz_for_survey_paper
-from utils.utils import viz_cam
+from utils.utils import viz_cam #Se importan las librerías y utilidades necesarias desde utils
 import os
 import numpy as np
 import sys
@@ -13,7 +13,7 @@ import utils
 from utils.constants import CLASSIFIERS
 from utils.constants import ARCHIVE_NAMES
 from utils.constants import ITERATIONS
-from utils.utils import read_all_datasets
+from utils.utils import read_all_datasets #Desde la carpeta constants se importan las iteraciones, nombres de clasificadores y nombres de archivos
 
 
 def fit_classifier(datasets_dict, dataset_name, classifier_name, output_directory):
@@ -21,7 +21,7 @@ def fit_classifier(datasets_dict, dataset_name, classifier_name, output_director
     y_train = datasets_dict[dataset_name][1]
     x_test = datasets_dict[dataset_name][2]
     y_test = datasets_dict[dataset_name][3]
-
+    #Se crean vectores para los dataset de entrenamiento y prueba de los modelos
     nb_classes = len(np.unique(np.concatenate((y_train, y_test), axis=0)))
 
     # transform the labels from integers to one hot vectors
@@ -83,7 +83,7 @@ def init_train(root_dir = './', results_dir = './'):
     # this is the code used to launch an experiment on a dataset
     archive_name = 'UCRArchive_2018'
     dataset_name = 'MITECG'
-    classifier_names = ['fcn','mlp','resnet','tlenet']
+    classifier_names = ['fcn','mlp','resnet','tlenet'] # Aqui se configuran los clasificadores que van a entrenarse
     itr = '_itr_1'
 
     for classifier_name in classifier_names:
