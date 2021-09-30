@@ -33,7 +33,7 @@ def fit_classifier(datasets_dict, dataset_name, classifier_name, output_director
     # save orignal y because later we will use binary
     y_true = np.argmax(y_test, axis=1)
 
-    if len(x_train.shape) == 12:  # if univariate
+    if len(x_train.shape) == 2:  # if univariate
         # add a dimension to make it multivariate with one dimension 
         x_train = x_train.reshape((x_train.shape[0], x_train.shape[1], 1))
         x_test = x_test.reshape((x_test.shape[0], x_test.shape[1], 1))
