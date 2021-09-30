@@ -82,7 +82,7 @@ def create_classifier(classifier_name, input_shape, nb_classes, output_directory
 def init_train(root_dir = './', results_dir = './'):
     # this is the code used to launch an experiment on a dataset
     archive_name = 'UCRArchive_2018'
-    dataset_name = 'MITECG'
+    dataset_name = 'CECG'
     classifier_names = ['fcn','mlp','resnet','mcdcnn','encoder','cnn'] # Aqui se configuran los clasificadores que van a entrenarse
     itr = '_itr_1'
 
