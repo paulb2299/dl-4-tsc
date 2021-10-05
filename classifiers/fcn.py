@@ -27,15 +27,16 @@ class Classifier_FCN:
 
 		conv1 = keras.layers.Conv1D(filters=128, kernel_size=8, padding='same')(input_layer)
 		conv1 = keras.layers.BatchNormalization()(conv1)
-		conv1 = keras.layers.LeakyReLU(alpha=0.3)(conv1)
+		conv1 = keras.layers.Activation(activation='relu')(conv1)
 
 		conv2 = keras.layers.Conv1D(filters=256, kernel_size=5, padding='same')(conv1)
 		conv2 = keras.layers.BatchNormalization()(conv2)
-		conv2 = keras.layers.LeakyReLU(alpha=0.3)(conv2)
+		conv2 = keras.layers.Activation('relu')(conv2)
 
 		conv3 = keras.layers.Conv1D(128, kernel_size=3,padding='same')(conv2)
 		conv3 = keras.layers.BatchNormalization()(conv3)
-		conv3 = keras.layers.LeakyReLU(alpha=0.3)(conv3)
+		conv3 = keras.layers.Activation('relu')(conv3)
+
 
 
 		gap_layer = keras.layers.GlobalAveragePooling1D()(conv3)
@@ -64,7 +65,7 @@ class Classifier_FCN:
 			print('error')
 			exit()
 		# x_val and y_val are only used to monitor the test loss and NOT for training  
-		batch_size = 8
+		batch_size = 32
 		nb_epochs = 10 #Establecemos el numero de epocas que deseemos que ejecute el modelo
 
 		mini_batch_size = int(min(x_train.shape[0]/10, batch_size))
